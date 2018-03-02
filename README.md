@@ -11,7 +11,7 @@ the `*.in` files.
 
 The algorithm sorts the rides in increasing order based on `latest_finish` key
 then, it goes through the list of rides one by one and tries to assign the
-i-th ride to the j-th vehicle. In case the vehicle has no more time available for
+i-th ride to the least busy vehicle. In case the vehicle has no more time available for
 a ride, the algorithm skips to the next vehicle and continue the assignment.
 
 ### The score of this solution is: **29,318,902**
