@@ -33,6 +33,13 @@ def print_sol(vehicles):
     return
 
 
+def ride_sorting(a, b):
+    if a.latest_finish == b.latest_finish:
+        return travel_time(b.p_start, b.p_goal) - travel_time(a.p_start, a.p_goal)
+    else:
+        return a.latest_finish - b.latest_finish
+
+
 def solve(R, C, F, N, B, T):
     rides = []
     vehicles = [Vehicle(idx) for idx in range(F)]
@@ -49,8 +56,7 @@ def solve(R, C, F, N, B, T):
         ride.latest_finish = latest_finish
         rides.append(ride)
 
-
-    for ride in sorted(rides, key=lambda x: x.latest_finish):
+    for ride in sorted(rides, cmp=ride_sorting):
         vehicles.sort(key=lambda x: x.time)
 
         time = waiting_time(vehicles[0].time, ride.earliest_start)
