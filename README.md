@@ -1,29 +1,30 @@
-# README #
+# Google Hash Code 2018
+## Qualification Round - Problem Solution
 
-This README would normally document whatever steps are necessary to get your application up and running.
+This repository contains the problem solution to the Google Hash Code 2018
+Qualification Round.
 
-### What is this repository for? ###
+File `main.py` contains the script used to generate the `*.out` files based on
+the `*.in` files.
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+## Algorithm Description
 
-### How do I get set up? ###
+The algorithm goes through the list of rides one by one and tries to assign the
+i-th ride to the j-th vehicle. In case the vehicle has no more time available for
+a ride, the algorithm skip to the next vehicle and continue the assignment.
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+### The score of this solution is: **12,068,394**
 
-### Contribution guidelines ###
+## Further Improvements
 
-* Writing tests
-* Code review
-* Other guidelines
+  * Sort the rides by `latest_finish` and assign it to the i-th vehicle.
+  * Sort the rides by `latest_finish` and assign it to the least busy vehicle.
+  * Sort the rides by `(latest_finish, ride_tot_time)`  and assign it to the
+    least busy vehicle.
 
-### Who do I talk to? ###
+## Contributors
 
-* Repo owner or admin
-* Other community or team contact
+  * [Stefano Martinallo](https://github.com/nallo)
+  * [Lorenzo Dibenedetto](https://www.facebook.com/cielodipintodiblu)
+  * [Alessandro Giordano](https://www.facebook.com/deimos2346)
+  * [Achilles Tzimis](https://www.facebook.com/achilles.tzimis)
