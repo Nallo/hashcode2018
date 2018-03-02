@@ -9,6 +9,15 @@ class Vehicle(object):
         self.trips = []
 
 
+class Ride(object):
+    def __init__(self, id):
+        self.id = id
+        self.p_start = (0,0)
+        self.p_goal = (0,0)
+        self.earliest_start = 0
+        self.latest_finish = 0
+
+
 def waiting_time(vehicle_time, earliest_start):
     return max(0, earliest_start-vehicle_time)
 
@@ -25,25 +34,35 @@ def print_sol(vehicles):
 
 
 def solve(R, C, F, N, B, T):
+    rides = []
     vehicles = [Vehicle(idx) for idx in range(F)]
 
     for ride_idx in range(N):
-        vehicles.sort(key=lambda x: x.time)
-
         r_start, c_start, r_goal, c_goal, earliest_start, latest_finish = map(int, raw_input().split(' '))
         p_start = (r_start, c_start)
         p_goal = (r_goal, c_goal)
 
-        time = waiting_time(vehicles[0].time, earliest_start)
-        time += travel_time(vehicles[0].position, p_start)
-        time += travel_time(p_start, p_goal)
+        ride = Ride(ride_idx)
+        ride.p_start = p_start
+        ride.p_goal = p_goal
+        ride.earliest_start = earliest_start
+        ride.latest_finish = latest_finish
+        rides.append(ride)
+
+
+    for ride in sorted(rides, key=lambda x: x.latest_finish):
+        vehicles.sort(key=lambda x: x.time)
+
+        time = waiting_time(vehicles[0].time, ride.earliest_start)
+        time += travel_time(vehicles[0].position, ride.p_start)
+        time += travel_time(ride.p_start, ride.p_goal)
 
         if vehicles[0].time + time > T:
             continue
 
         vehicles[0].time += time
         vehicles[0].position = p_goal
-        vehicles[0].trips.append(ride_idx)
+        vehicles[0].trips.append(ride.id)
 
     print_sol(vehicles)
     return
